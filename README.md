@@ -1,0 +1,2 @@
+# Synapse-Smart-Student-Project-Management-Dashboard
+Synapse is a Python-based Smart Student &amp; Project Management Dashboard that helps students organize notes, assignments, deadlines, and projects. It provides task tracking, visual subject mapping, and study assistance through an interactive platform. Its main objective is to improve academic productivity, time management, and learning organization.
