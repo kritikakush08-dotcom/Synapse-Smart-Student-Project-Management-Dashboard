@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synapse AI | Personal Intelligence Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div><strong>Synapse AI</strong><small>INTELLIGENCE HUB</small></div>
+        </div>
+
+        <p class="nav-label">WORKSPACE</p>
+        <button class="nav-item active" data-page="dashboard">⌂ Dashboard</button>
+        <button class="nav-item" data-page="python">⌘ Python Lab</button>
+        <button class="nav-item" data-page="analytics">▦ Data Analytics</button>
+        <button class="nav-item" data-page="visuals">◈ Visualization Studio</button>
+        <button class="nav-item" data-page="oop">◇ OOP Explorer</button>
+        <button class="nav-item" data-page="gui">▣ Tkinter Lab</button>
+
+        <div class="sidebar-bottom">
+            <span class="status-dot"></span> Python workspace
+            <small>Learning mode · v1.0</small>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">YOUR PERSONAL WORKSPACE</p>
+                <h1 id="page-title">Intelligence Dashboard</h1>
+            </div>
+            <div class="server-status"><span class="status-dot"></span> Flask workspace</div>
+        </header>
+
+        <section class="page active" id="dashboard">
+            <div class="hero">
+                <div>
+                    <p class="eyebrow">WELCOME TO SYNAPSE</p>
+                    <h2>Turn data into <span>understanding.</span></h2>
+                    <p>Explore Python, analyse datasets, and discover patterns through interactive visualizations.</p>
+                    <button class="primary-btn" data-go="analytics">Explore analytics ↗</button>
+                </div>
+                <div class="hero-art">
+                    <div class="orb">S</div>
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+                </div>
+            </div>
+
+            <div class="section-heading"><div><h2>Workspace overview</h2><p>Live results from the Python backend</p></div></div>
+            <div class="stats-grid">
+                <article class="stat-card"><span>AVERAGE MARKS</span><strong id="avg">—</strong><small>Sample dataset</small></article>
+                <article class="stat-card"><span>HIGHEST MARKS</span><strong id="high">—</strong><small>Sample dataset</small></article>
+                <article class="stat-card"><span>LOWEST MARKS</span><strong id="low">—</strong><small>Sample dataset</small></article>
+                <article class="stat-card"><span>RECORDS</span><strong id="count">—</strong><small>Processed by NumPy</small></article>
+            </div>
+
+            <div class="content-grid">
+                <article class="panel">
+                    <div class="panel-heading"><div><h3>Performance overview</h3><p>Sample subject scores</p></div><span class="tag">LIVE CHART</span></div>
+                    <div id="dashboard-chart" class="chart"></div>
+                </article>
+                <article class="panel quick-panel">
+                    <h3>Quick access</h3>
+                    <button class="quick-link" data-go="python"><span>01</span><div><strong>Python fundamentals</strong><small>Functions, loops, and logic</small></div>↗</button>
+                    <button class="quick-link" data-go="analytics"><span>02</span><div><strong>Data analytics</strong><small>Explore and clean data</small></div>↗</button>
+                    <button class="quick-link" data-go="visuals"><span>03</span><div><strong>Visualization studio</strong><small>Build interactive charts</small></div>↗</button>
+                </article>
+            </div>
+        </section>
+
+        <section class="page" id="python">
+            <div class="section-heading"><div><h2>Python Fundamentals Lab</h2><p>Experiment with mathematical operations and data structures.</p></div></div>
+            <div class="content-grid">
+                <article class="panel">
+                    <h3>Permutations & combinations</h3>
+                    <p class="muted">Calculate P(n, r) and C(n, r) using Python.</p>
+                    <div class="form-row">
+                        <label>n<input id="n-value" type="number" min="0" max="170" value="5"></label>
+                        <label>r<input id="r-value" type="number" min="0" max="170" value="2"></label>
+                    </div>
+                    <button class="primary-btn" id="calculate-btn">Calculate</button>
+                    <pre id="comb-result" class="result">Your results will appear here.</pre>
+                </article>
+                <article class="panel">
+                    <h3>Twin prime explorer</h3>
+                    <p class="muted">Find pairs of prime numbers that differ by two.</p>
+                    <label>Upper limit<input id="prime-limit" type="number" min="3" max="1000" value="100"></label>
+                    <button class="primary-btn" id="prime-btn">Find twin primes</button>
+                    <pre id="prime-result" class="result">Try a limit of 100.</pre>
+                </article>
+            </div>
+            <article class="panel section-gap">
+                <h3>List operations lab</h3>
+                <p class="muted">Enter numbers separated by commas to explore sorting, reversing, mapping, and filtering.</p>
+                <label>Your list<input id="list-values" value="4, 2, 8, 6, 3"></label>
+                <button class="primary-btn" id="list-btn">Process list</button>
+                <pre id="list-result" class="result">Results will appear here.</pre>
+            </article>
+        </section>
+
+        <section class="page" id="analytics">
+            <div class="section-heading"><div><h2>Data Analytics Studio</h2><p>Analyse sample records or upload your own CSV dataset.</p></div></div>
+            <article class="panel">
+                <h3>Employee analytics</h3>
+                <p class="muted">Missing salaries are filled with the median before the Sales department average is calculated.</p>
+                <button class="primary-btn" id="employee-btn">Run Pandas analysis</button>
+                <div id="employee-summary" class="stats-grid compact"></div>
+                <div class="table-wrap">
+                    <table><thead><tr><th>Name</th><th>Department</th><th>Salary</th></tr></thead><tbody id="employee-table"></tbody></table>
+                </div>
+            </article>
+            <article class="panel section-gap">
+                <h3>CSV data explorer</h3>
+                <p class="muted">Upload a CSV file up to 5 MB. The first 100 records will be previewed.</p>
+                <form id="csv-form">
+                    <input type="file" id="csv-file" accept=".csv" required>
+                    <button class="primary-btn" type="submit">Analyse dataset</button>
+                </form>
+                <div id="csv-summary" class="result">No dataset uploaded.</div>
+                <div class="table-wrap"><table id="csv-table"></table></div>
+            </article>
+        </section>
+
+        <section class="page" id="visuals">
+            <div class="section-heading"><div><h2>Visualization Studio</h2><p>Choose a chart and view actual results returned by Python.</p></div></div>
+            <article class="panel">
+                <div class="chart-controls">
+                    <label>Chart type
+                        <select id="chart-type">
+                            <option value="bar">Bar chart</option>
+                            <option value="line">Line chart</option>
+                            <option value="pie">Pie chart</option>
+                            <option value="scatter">Scatter plot</option>
+                            <option value="histogram">Histogram</option>
+                        </select>
+                    </label>
+                    <button class="primary-btn" id="render-chart-btn">Generate chart</button>
+                </div>
+                <div id="studio-chart" class="large-chart"></div>
+            </article>
+            <article class="panel section-gap">
+                <h3>Mathematical function</h3>
+                <p class="muted">Explore the function y = x².</p>
+                <div id="square-chart" class="large-chart"></div>
+            </article>
+        </section>
+
+        <section class="page" id="oop">
+            <div class="section-heading"><div><h2>OOP Explorer</h2><p>Understand classes, objects, inheritance, and polymorphism.</p></div></div>
+            <div class="content-grid">
+                <article class="panel"><h3>Class and object</h3><pre class="code-example">class Student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+
+    def grade(self):
+        if self.marks >= 80:
+            return "Excellent"
+        return "Keep practising"
+
+student = Student("Aarav", 85)
+print(student.grade())</pre><p class="muted">The class defines a student; the object stores the student's values.</p></article>
+                <article class="panel"><h3>Inheritance and polymorphism</h3><pre class="code-example">class Animal:
+    def speak(self):
+        return "Animal sound"
+
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+
+pet = Dog()
+print(pet.speak())</pre><p class="muted">Dog inherits from Animal and overrides its method.</p></article>
+            </div>
+        </section>
+
+        <section class="page" id="gui">
+            <div class="section-heading"><div><h2>Tkinter Desktop Lab</h2><p>Explore the separate desktop GUI part of the syllabus.</p></div></div>
+            <article class="panel">
+                <h3>Geometry managers</h3>
+                <p class="muted">Tkinter runs as a desktop application, not inside a browser page.</p>
+                <pre class="code-example">import tkinter as tk
+
+root = tk.Tk()
+root.title("Synapse AI - Tkinter Lab")
+root.geometry("500x300")
+
+tk.Button(root, text="Pack").pack(pady=8)
+
+button = tk.Button(root, text="Grid")
+button.grid(row=0, column=0, padx=10)
+
+root.mainloop()</pre>
+                <p class="notice">For a real demonstration, run the separate Tkinter program provided in the desktop module. Do not mix pack() and grid() in the same parent container.</p>
+            </article>
+        </section>
+
+        <footer>Synapse AI <span>Python · Analytics · Visualization</span></footer>
+    </main>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
